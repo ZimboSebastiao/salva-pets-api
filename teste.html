@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lista de Pets</title>
+  <style>
+    ul, li {list-style: none;}
+  </style>
 </head>
 <body>
   <h1>Lista de Pets</h1>
@@ -22,12 +25,18 @@
         data.forEach(pet => {
           const listItem = document.createElement('li');
           listItem.innerHTML = `
+            <br>
             <img src="${pet.imagem}" alt="${pet.nome}" width="200"><br><br>
+            <strong>Tipo:</strong> ${pet.tipo}<br>
             <strong>Nome:</strong> ${pet.nome}<br>
             <strong>Idade:</strong> ${pet.idade}<br>
             <strong>Raça:</strong> ${pet.raca}<br>
             <strong>Sexo:</strong> ${pet.sexo}<br>
+            <strong>localizacao:</strong> ${pet.localizacao}<br>
             <strong>Descrição:</strong> ${pet.descricao}<br>
+            <strong>sobre:</strong> ${pet.sobre}<br>
+            <br>
+            <hr>
           `;
           listaPets.appendChild(listItem);
         });

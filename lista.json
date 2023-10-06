@@ -1,0 +1,50 @@
+[
+    
+  {
+    "nome" : "Bolinha",
+    "tipo" : "Cachorro",
+    "imagem" : "https://images.dog.ceo/breeds/labrador/n02099712_1383.jpg",
+    "idade" : "2020-08-03",
+    "raca" : "Labrador",
+    "localizacao" : "São Paulo, Brasil",
+    "sexo" : "Macho",
+    "descricao" : "Um adorável cachorro Labrador de pelagem dourada.",
+    "sobre": "Bolinha é um cachorro extremamente carinhoso e brincalhão. Ele adora correr pelo parque e buscar sua bolinha favorita. Sempre pronto para dar lambeijos e fazer companhia, Bolinha é o companheiro perfeito para quem busca alegria e lealdade em um amigo peludo. Ele nasceu em 3 de agosto de 2020, e seu amor é incondicional."
+  },
+  {
+    "nome" : "Frajola",
+    "tipo" : "Gato",
+    "imagem" : "https://cdn2.thecatapi.com/images/64p.jpg",
+    "idade" : "2020-08-03",
+    "raca" : "Persa",
+    "localizacao" : "Rio de Janeiro, Brasil",
+    "sexo" : "Fêmea",
+    "descricao" : "Uma elegante gata Persa de pelos longos e sedosos.",
+    "sobre": "Frajola é uma gata de personalidade tranquila e misteriosa. Seus olhos verdes hipnotizam a todos que a conhecem. Ela gosta de passar suas horas ensolaradas olhando pela janela e brincando com suas bolinhas de lã. Nascida em 3 de agosto de 2020, Frajola é a companhia perfeita para quem busca a suavidade e a graça de um gato Persa."
+  },
+  {
+    "nome" : "Rex",
+    "tipo" : "Cachorro",
+    "imagem" : "https://images.dog.ceo/breeds/retriever-golden/n02099601_2994.jpg",
+    "idade" : "2019-05-12",
+    "raca" : "Golden Retriever",
+    "localizacao" : "Belo Horizonte, Brasil",
+    "sexo" : "Macho",
+    "descricao" : "Um Golden Retriever amigável e cheio de energia.",
+    "sobre": "Rex é um cachorro muito enérgico e amigável. Ele adora brincar de pegar a bolinha e nadar no rio. Com seu pelo dourado e sorriso constante, Rex é o parceiro perfeito para quem busca aventuras ao ar livre. Ele nasceu em 12 de maio de 2019."
+  },
+  {
+    "nome" : "Mia",
+    "tipo" : "Gato",
+    "imagem" : "https://cdn2.thecatapi.com/images/386.jpg",
+    "idade" : "2021-02-20",
+    "raca" : "Siamesa",
+    "localizacao" : "Porto Alegre, Brasil",
+    "sexo" : "Fêmea",
+    "descricao" : "Uma gata Siamesa elegante e vocal.",
+    "sobre": "Mia é uma gata Siamesa de beleza cativante. Ela é conhecida por sua voz expressiva e adora conversar com seus humanos. Mia é uma companheira leal e gosta de passar horas no colo de seus donos. Ela nasceu em 20 de fevereiro de 2021."
+  }
+
+
+
+]
