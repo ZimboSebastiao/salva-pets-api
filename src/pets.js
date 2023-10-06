@@ -23,9 +23,9 @@ function ler(res) {
 }
 
 // Inserindo pets no banco de dados
-function inserir(aluno, res){
+function inserir(pet, res){
     const sql = "INSERT INTO pets SET ?";
-    conexao.query(sql, aluno, (erro) => {
+    conexao.query(sql, pet, (erro) => {
 
         if (erro) {
             res.status(400).json(erro.code);

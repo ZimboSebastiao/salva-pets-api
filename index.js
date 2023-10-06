@@ -1,65 +1,64 @@
 import express from "express";
-import {ler, inserir, lerUm, atualizar, excluir} from "./src/pets.js";
+import { ler, inserir, lerUm, atualizar, excluir } from "./src/pets.js";
 import cors from 'cors';
+import axios from 'axios';
+import fs from 'fs';
 
 const app = express();
-const porta = 8080
-// const porta = process.env.PORT || 3306;
+const porta = 8080;
 
-// Adicionando suporte para o formato Json
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 
-// Adicionando suporte a dados vindo de formulário
-app.use(express.urlencoded({extended : true}));
-
-// permitindo acesso aos arquivos da API
-app.use(cors())
-
-// Criando as rotas
-// raiz da aplicação
 app.get('/', (req, res) => {
-    // res.redirect('https://documenter.getpostman.com/view/29885708/2s9YJZ34YJ');
     res.send(`Página raiz`);
 });
 
-// Exibindo dados de um pet
 app.get('/pets/:id', (req, res) => {
-    // res.send(`Exibindo dados de um Pet`);
     const id = parseInt(req.params.id);
     lerUm(id, res);
 });
 
-// Exibindo dados de Todos os pets
 app.get('/pets', (req, res) => {
-    // res.send(`Exibindo dados de todos os pets`);
     ler(res);
 });
 
-// Adicionando um pet
-app.post('/pets', (req, res) => {
-    // res.send(`Adicionando um pet`);
+app.post('/pets', async (req, res) => {
     const novoPet = req.body;
-    inserir(novoPet, res);
+    const imagemUrl = req.body.imagem; // URL da imagem fornecida pelo cliente
+    const imagemNome = Date.now() + '_' + novoPet.nome + '.jpg'; // Nome da imagem com extensão
+    const caminhoDaImagem = 'public/images/' + imagemNome;
+
+    try {
+        // Faz o download da imagem a partir do URL fornecido pelo cliente usando axios
+        const response = await axios.get(imagemUrl, { responseType: 'arraybuffer' });
+
+        // Salva a imagem no sistema de arquivos
+        fs.writeFileSync(caminhoDaImagem, Buffer.from(response.data));
+
+        // Atualiza o objeto pet com o caminho da imagem
+        novoPet.imagem = caminhoDaImagem;
+
+        // Insere o pet no banco de dados
+        inserir(novoPet, res);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ mensagem: 'Erro ao salvar a imagem' });
+    }
 });
 
-// Atualizando dados de um pet
 app.patch('/pets/:id', (req, res) => {
-    // res.send(`Atualizando um pet`); 
     const id = parseInt(req.params.id);
     const aluno = req.body;
     atualizar(id, aluno, res);
 });
 
-// Deletando dados de um pet
 app.delete('/pets/:id', (req, res) => {
-    // res.send(`Excluindo um pet`);
     const id = parseInt(req.params.id);
     excluir(id, res);
 });
 
-// Executando o servidor 
-
-
 app.listen(porta, () => {
     console.log(`Servidor NodeJS rodando na porta ${porta}`);
-})
+});

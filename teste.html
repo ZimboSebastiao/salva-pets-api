@@ -1,18 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista de Pets</title>
 </head>
 <body>
-    
-    <script>
-        console.warn("Exibindo")
-        
-        fetch('https://escolazimbo.onrender.com/alunos')
-            .then(response => response.json())
-            .then(json => console.log(json))
-    </script>
+  <h1>Lista de Pets</h1>
+  <ul id="lista-pets"></ul>
+
+  <script>
+    // Função para fazer a solicitação AJAX e exibir os animais
+    async function carregarPets() {
+      try {
+        const response = await fetch('http://localhost:8080/pets/'); // Faz a solicitação para a rota /pets
+        const data = await response.json(); // Converte a resposta em JSON
+
+        const listaPets = document.getElementById('lista-pets');
+
+        // Itera sobre os dados e cria elementos HTML para exibir os pets
+        data.forEach(pet => {
+          const listItem = document.createElement('li');
+          listItem.innerHTML = `
+            <img src="${pet.imagem}" alt="${pet.nome}" width="200"><br><br>
+            <strong>Nome:</strong> ${pet.nome}<br>
+            <strong>Idade:</strong> ${pet.idade}<br>
+            <strong>Raça:</strong> ${pet.raca}<br>
+            <strong>Sexo:</strong> ${pet.sexo}<br>
+            <strong>Descrição:</strong> ${pet.descricao}<br>
+          `;
+          listaPets.appendChild(listItem);
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    // Chama a função para carregar os pets quando a página carregar
+    window.addEventListener('load', carregarPets);
+  </script>
 </body>
 </html>
