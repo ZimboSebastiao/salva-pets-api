@@ -24,37 +24,37 @@ app.get('/', (req, res) => {
 
 // Exibindo dados de um pet
 app.get('/pets/:id', (req, res) => {
-    res.send(`Exibindo dados de um Pet`);
-    // const id = parseInt(req.params.id);
-    // lerUm(id, res);
+    // res.send(`Exibindo dados de um Pet`);
+    const id = parseInt(req.params.id);
+    lerUm(id, res);
 });
 
 // Exibindo dados de Todos os pets
 app.get('/pets', (req, res) => {
-    res.send(`Exibindo dados de todos os pets`);
-    // ler(res);
+    // res.send(`Exibindo dados de todos os pets`);
+    ler(res);
 });
 
 // Adicionando um pet
 app.post('/pets', (req, res) => {
-    res.send(`Adicionando um pet`);
-    // const novoAluno = req.body;
-    // inserir(novoAluno, res);
+    // res.send(`Adicionando um pet`);
+    const novoPet = req.body;
+    inserir(novoPet, res);
 });
 
 // Atualizando dados de um pet
 app.patch('/pets/:id', (req, res) => {
-    res.send(`Atualizando um pet`); 
-    // const id = parseInt(req.params.id);
-    // const aluno = req.body;
-    // atualizar(id, aluno, res);
+    // res.send(`Atualizando um pet`); 
+    const id = parseInt(req.params.id);
+    const aluno = req.body;
+    atualizar(id, aluno, res);
 });
 
 // Deletando dados de um pet
 app.delete('/pets/:id', (req, res) => {
-    res.send(`Excluindo um pet`);
-    // const id = parseInt(req.params.id);
-    // excluir(id, res);
+    // res.send(`Excluindo um pet`);
+    const id = parseInt(req.params.id);
+    excluir(id, res);
 });
 
 // Executando o servidor 
