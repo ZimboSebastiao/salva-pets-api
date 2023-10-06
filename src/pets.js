@@ -3,9 +3,9 @@ import conexao from "./banco.js";
 
 // CRUD
 
-// Ler/exibir todos os alunos
+// Ler/exibir todos os pets
 function ler(res) {
-    const sql = "SELECT * FROM alunos ORDER BY nome";
+    const sql = "SELECT * FROM pets ORDER BY nome";
 
     conexao.query(sql, (erro, resultados) => {
         // Verificação para ver se há conteúdo
@@ -22,24 +22,24 @@ function ler(res) {
     });
 }
 
-// Inserindo alunos no banco de dados
+// Inserindo pets no banco de dados
 function inserir(aluno, res){
-    const sql = "INSERT INTO alunos SET ?";
+    const sql = "INSERT INTO pets SET ?";
     conexao.query(sql, aluno, (erro) => {
 
         if (erro) {
             res.status(400).json(erro.code);
 
         } else {
-            res.status(201).json({"status" : "Aluno inserido"});
+            res.status(201).json({"status" : "Pet inserido"});
         }
     });
     
 }
 
-// Ler um aluno
+// Ler um pet
 function lerUm(id, res) {
-    const sql = "SELECT * FROM alunos  WHERE id = ?";
+    const sql = "SELECT * FROM pets  WHERE id = ?";
 
     conexao.query(sql, id, (erro, resultados) => {
         if (resultados === 0){
@@ -56,27 +56,27 @@ function lerUm(id, res) {
 }
 
 
-// Atualizar todos ou alguns dados de um aluno
-function atualizar(id, aluno, res) {
-    const sql = "UPDATE alunos SET ? WHERE id = ?";
-    conexao.query(sql, [aluno, id], (erro, resultados) => {
+// Atualizar todos ou alguns dados de um pet
+function atualizar(id, pet, res) {
+    const sql = "UPDATE pets SET ? WHERE id = ?";
+    conexao.query(sql, [pet, id], (erro, resultados) => {
         if (erro) {
             res.status(400).json(erro.code); // 400 = BAD Request
         } else {
             //res.status(200).json({"Status" : "Atualizado com sucesso!"});
-            res.status(200).json({...aluno, id});
+            res.status(200).json({...pet, id});
         }
     })
 }
 
-// Excluir aluno da base de dados
+// Excluir pet da base de dados
 function excluir(id, res) {
-    const sql = "DELETE FROM alunos WHERE id = ?";
+    const sql = "DELETE FROM pets WHERE id = ?";
     conexao.query(sql, id, (erro, resultados) => {
         if (erro) {
             res.status(400).json(erro.code);
         } else {
-            res.status(200).json({"Status" : "Aluno Excluido", id});
+            res.status(200).json({"Status" : "Pet Excluido", id});
         }
     });
 }

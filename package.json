@@ -1,8 +1,8 @@
 {
   "type": "module",
-  "name": "escola-api",
+  "name": "salva-pets-api",
   "version": "1.0.0",
-  "description": "API NodeJS + EXPRESS com CRUD",
+  "description": "Api para cadastro de pets para o projecto integrador.",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ZimboSebastiao/escola-api.git"
+    "url": "git+https://github.com/ZimboSebastiao/salva-pets-api.git"
   },
-  "author": "Zimbo",
+  "author": "Zimbo Sebastião",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ZimboSebastiao/escola-api/issues"
+    "url": "https://github.com/ZimboSebastiao/salva-pets-api/issues"
   },
-  "homepage": "https://github.com/ZimboSebastiao/escola-api#readme",
+  "homepage": "https://github.com/ZimboSebastiao/salva-pets-api#readme",
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.18.2",
