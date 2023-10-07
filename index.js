@@ -37,7 +37,7 @@ app.post('/pets', async (req, res) => {
     const novoPet = req.body;
     const imagemUrl = req.body.imagem; // URL da imagem fornecida pelo cliente
     const imagemNome = Date.now() + '_' + novoPet.nome + '.jpg'; // Nome da imagem com extensão
-    const caminhoDaImagem = path.join(publicDir, 'images', imagemNome); // Constrói o caminho completo da imagem
+    const caminhoDaImagem = path.join(publicDir, 'images', imagemNome); // Constrói o caminho completo d imagem
 
     try {
         // Faz o download da imagem a partir do URL fornecido pelo cliente usando axios
