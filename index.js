@@ -5,7 +5,8 @@ import axios from 'axios';
 import fs from 'fs';
 
 const app = express();
-const porta = 8080;
+// const porta = 8080;
+const porta = process.env.PORT || 3306;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

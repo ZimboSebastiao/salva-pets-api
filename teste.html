@@ -16,7 +16,7 @@
     // Função para fazer a solicitação AJAX e exibir os animais
     async function carregarPets() {
       try {
-        const response = await fetch('http://localhost:8080/pets/'); // Faz a solicitação para a rota /pets
+        const response = await fetch(''); // Faz a solicitação para a rota /pets
         const data = await response.json(); // Converte a resposta em JSON
 
         const listaPets = document.getElementById('lista-pets');
