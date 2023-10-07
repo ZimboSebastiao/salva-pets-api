@@ -37,17 +37,17 @@ app.post('/pets', async (req, res) => {
     const novoPet = req.body;
     const imagemUrl = req.body.imagem; // URL da imagem fornecida pelo cliente
     const imagemNome = Date.now() + '_' + novoPet.nome + '.jpg'; // Nome da imagem com extensão
-    const caminhoDaImagem = path.join(publicDir, 'images', imagemNome); // Constrói o caminho completo d imagem
+    const caminhoDaImagem = path.join(publicDir, 'images', imagemNome); // Constrói o caminho completo da imagem
 
     try {
         // Faz o download da imagem a partir do URL fornecido pelo cliente usando axios
         const response = await axios.get(imagemUrl, { responseType: 'arraybuffer' });
 
-        // Salva a imagem no sistema de arquivos
+        // Salva a imagem no sistema de arquivos no diretório 'public/images'
         fs.writeFileSync(caminhoDaImagem, Buffer.from(response.data));
 
-        // Atualiza o objeto pet com o caminho da imagem
-        novoPet.imagem = caminhoDaImagem;
+        // Atualiza o objeto pet com o caminho relativo da imagem (sem a parte '/opt/render/project/src/')
+        novoPet.imagem = '/images/' + imagemNome;
 
         // Insere o pet no banco de dados
         inserir(novoPet, res);
