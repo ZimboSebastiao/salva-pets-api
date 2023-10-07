@@ -16,7 +16,7 @@
     // Função para fazer a solicitação AJAX e exibir os animais
     async function carregarPets() {
       try {
-        const response = await fetch('https://salvapets.onrender.com/pets/'); // Faz a solicitação para a rota /pets
+        const response = await fetch('https://salvapets.onrender.com/pets'); // Faz a solicitação para a rota /pets
         const data = await response.json(); // Converte a resposta em JSON
 
         const listaPets = document.getElementById('lista-pets');
@@ -26,15 +26,15 @@
           const listItem = document.createElement('li');
           listItem.innerHTML = `
             <br>
-            <img src="${pet.imagem}" alt="${pet.nome}" width="200"><br><br>
+            <img src="https://salvapets.onrender.com${pet.imagem}" alt="${pet.nome}" width="200"><br><br>
             <strong>Tipo:</strong> ${pet.tipo}<br>
             <strong>Nome:</strong> ${pet.nome}<br>
-            <strong>Idade:</strong> ${pet.idade}<br>
+            <strong>Idade:</strong> ${new Date(pet.idade).toLocaleDateString()}<br>
             <strong>Raça:</strong> ${pet.raca}<br>
             <strong>Sexo:</strong> ${pet.sexo}<br>
-            <strong>localizacao:</strong> ${pet.localizacao}<br>
+            <strong>Localização:</strong> ${pet.localizacao}<br>
             <strong>Descrição:</strong> ${pet.descricao}<br>
-            <strong>sobre:</strong> ${pet.sobre}<br>
+            <strong>Sobre:</strong> ${pet.sobre}<br>
             <br>
             <hr>
           `;
