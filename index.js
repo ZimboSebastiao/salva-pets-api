@@ -59,7 +59,7 @@ app.post('/pets', async (req, res) => {
 
 app.patch('/pets/:id', (req, res) => {
     const id = parseInt(req.params.id);
-    const aluno = req.body;
+    const pet = req.body;
     atualizar(id, pet, res);
 });
 
