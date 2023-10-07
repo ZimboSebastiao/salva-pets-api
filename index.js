@@ -3,14 +3,18 @@ import { ler, inserir, lerUm, atualizar, excluir } from "./src/pets.js";
 import cors from 'cors';
 import axios from 'axios';
 import fs from 'fs';
+import path from 'path'; // Importe o módulo 'path' para lidar com caminhos de arquivo.
 
 const app = express();
-// const porta = 8080;
 const porta = process.env.PORT || 3306;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
+
+// Configure o Express.js para servir arquivos estáticos da pasta 'public'
+const publicDir = path.join(__dirname, 'public');
+app.use(express.static(publicDir));
 
 app.get('/', (req, res) => {
     res.send(`Página raiz`);
@@ -29,7 +33,7 @@ app.post('/pets', async (req, res) => {
     const novoPet = req.body;
     const imagemUrl = req.body.imagem; // URL da imagem fornecida pelo cliente
     const imagemNome = Date.now() + '_' + novoPet.nome + '.jpg'; // Nome da imagem com extensão
-    const caminhoDaImagem = 'public/images/' + imagemNome;
+    const caminhoDaImagem = path.join(publicDir, 'images', imagemNome); // Constrói o caminho completo da imagem
 
     try {
         // Faz o download da imagem a partir do URL fornecido pelo cliente usando axios
@@ -52,7 +56,7 @@ app.post('/pets', async (req, res) => {
 app.patch('/pets/:id', (req, res) => {
     const id = parseInt(req.params.id);
     const aluno = req.body;
-    atualizar(id, aluno, res);
+    atualizar(id, pet, res);
 });
 
 app.delete('/pets/:id', (req, res) => {
