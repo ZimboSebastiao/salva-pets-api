@@ -1,4 +1,6 @@
-# Visão geral da API Salva Pets
+![SalvaPets Logo](public/images/pet.png)
+
+# Visão Geral da API Salva Pets 
 
 Esta API foi desenvolvida para fins educacionais e é parte do projeto Salva Pets. Seu objetivo principal é facilitar o aprendizado e otimizar o desenvolvimento do site, permitindo o registro de novos animais de estimação e simplificando as chamadas à API no código.
 
