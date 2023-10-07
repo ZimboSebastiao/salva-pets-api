@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
-// Configure o Express.js para servir arquivos estáticos da pasta 'public'
+
 const publicDir = path.join(__dirname, 'public');
 app.use(express.static(publicDir));
 
@@ -46,10 +46,9 @@ app.post('/pets', async (req, res) => {
         // Salva a imagem no sistema de arquivos no diretório 'public/images'
         fs.writeFileSync(caminhoDaImagem, Buffer.from(response.data));
 
-        // Atualiza o objeto pet com o caminho relativo da imagem (sem a parte '/opt/render/project/src/')
+        // Atualiza o objeto pet com o caminho relativo da imagem 
         novoPet.imagem = '/images/' + imagemNome;
 
-        // Insere o pet no banco de dados
         inserir(novoPet, res);
     } catch (err) {
         console.error(err);

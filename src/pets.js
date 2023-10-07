@@ -1,7 +1,7 @@
 import conexao from "./banco.js";
 
 
-// CRUD
+
 
 // Ler/exibir todos os pets
 function ler(res) {
@@ -10,12 +10,12 @@ function ler(res) {
     conexao.query(sql, (erro, resultados) => {
         // Verificação para ver se há conteúdo
         if (resultados.length === 0) {
-            res.status(204).end(); // É importante trabalhar com os status http. 204 = Sem contúdo. .end() encerra a execução
+            res.status(204).end(); //  .end() encerra a execução
             return;
         }
 
         if (erro) {
-            res.status(400).json(erro.code); // 400 = BAD Request
+            res.status(400).json(erro.code); 
         } else {
             res.status(200).json(resultados);
         }
@@ -31,7 +31,7 @@ function inserir(pet, res){
             res.status(400).json(erro.code);
 
         } else {
-            res.status(201).json({"status" : "Pet inserido"});
+            res.status(201).json({"status" : "Pet Adicionado com sucesso."});
         }
     });
     
