@@ -3,7 +3,11 @@ import { ler, inserir, lerUm, atualizar, excluir } from "./src/pets.js";
 import cors from 'cors';
 import axios from 'axios';
 import fs from 'fs';
-import path from 'path'; // Importe o módulo 'path' para lidar com caminhos de arquivo.
+import url from 'url';
+import path from 'path';
+
+const __filename = url.fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 const porta = process.env.PORT || 3306;
