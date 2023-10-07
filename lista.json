@@ -43,7 +43,296 @@
     "sexo" : "Fêmea",
     "descricao" : "Uma gata Siamesa elegante e vocal.",
     "sobre": "Mia é uma gata Siamesa de beleza cativante. Ela é conhecida por sua voz expressiva e adora conversar com seus humanos. Mia é uma companheira leal e gosta de passar horas no colo de seus donos. Ela nasceu em 20 de fevereiro de 2021."
+  },
+
+
+   {
+    "nome" : "Luna",
+    "tipo" : "Gato",
+    "imagem" : "https://cdn2.thecatapi.com/images/2ik.jpg",
+    "idade" : "2021-04-28",
+    "raca" : "Maine Coon",
+    "localizacao" : "Curitiba, Brasil",
+    "sexo" : "Fêmea",
+    "descricao" : "Uma gata Maine Coon majestosa e peluda.",
+    "sobre": "Luna é uma gata Maine Coon de porte majestoso. Ela possui uma pelagem exuberante e adora receber escovações diárias. Luna é uma gata independente e curiosa, sempre explorando cantos e recantos de sua casa. Ela nasceu em 28 de abril de 2021."
+  },
+
+  {
+    "nome" : "Max",
+    "tipo" : "Cachorro",
+    "imagem" : "https://images.dog.ceo/breeds/collie-border/n02106166_1754.jpg",
+    "idade" : "2018-12-05",
+    "raca" : "Poodle",
+    "localizacao" : "Recife, Brasil",
+    "sexo" : "Macho",
+    "descricao" : "Um Poodle inteligente e alegre.",
+    "sobre": "Max é um Poodle de inteligência notável. Ele adora aprender truques novos e adora estar no centro das atenções. Max é o parceiro perfeito para quem deseja um cachorro inteligente e alegre em sua vida. Ele nasceu em 5 de dezembro de 2018."
+  },
+  {
+    "nome" : "Branca",
+    "tipo" : "Gato",
+    "imagem" : "https://cdn2.thecatapi.com/images/0KUWJZPjy.jpg",
+    "idade" : "2020-06-17",
+    "raca" : "Siamês",
+    "localizacao" : "Salvador, Brasil",
+    "sexo" : "Fêmea",
+    "descricao" : "Uma gata Siamês graciosamente elegante.",
+    "sobre": "Branca é uma gata Siamês de beleza cativante. Ela é conhecida por sua personalidade afetuosa e adora passar horas no colo de seus humanos. Branca é a companheira perfeita para quem busca uma gatinha amorosa. Ela nasceu em 17 de junho de 2020."
+  },
+
+
+
+
+
+  {
+    "nome" : "Rufus",
+    "tipo" : "Cachorro",
+    "imagem" : "https://images.dog.ceo/breeds/spaniel-japanese/n02085782_2354.jpg",
+    "idade" : "2019-02-14",
+    "raca" : "Dálmata",
+    "localizacao" : "Brasília, Brasil",
+    "sexo" : "Macho",
+    "descricao" : "Um Dálmata brincalhão com manchas distintas.",
+    "sobre": "Rufus é um Dálmata cheio de energia e alegria. Suas manchas distintas fazem dele um cachorro único e adorável. Ele adora correr no parque e brincar de buscar a bolinha. Rufus nasceu em 14 de fevereiro de 2019."
+  },
+  {
+    "nome" : "Lola",
+    "tipo" : "Gato",
+    "imagem" : "https://cdn2.thecatapi.com/images/MTkwMzIwOA.jpg",
+    "idade" : "2020-07-22",
+    "raca" : "Persa",
+    "localizacao" : "Porto Velho, Brasil",
+    "sexo" : "Fêmea",
+    "descricao" : "Uma gata Persa de pelos longos e sedosos.",
+    "sobre": "Lola é uma gata Persa de beleza incomparável. Seu pelo longo e sedoso exige cuidados especiais, mas ela recompensa com sua elegância e carinho. Lola adora ser mimada e receber carícias suaves. Ela nasceu em 22 de julho de 2020."
+  },
+  {
+    "nome" : "Thor",
+    "tipo" : "Cachorro",
+    "imagem" : "https://images.dog.ceo/breeds/bullterrier-staffordshire/n02093256_4058.jpg",
+    "idade" : "2020-11-30",
+    "raca" : "Pit Bull",
+    "localizacao" : "Manaus, Brasil",
+    "sexo" : "Macho",
+    "descricao" : "Um Pit Bull forte e leal.",
+    "sobre": "Thor é um Pit Bull forte e leal. Ele adora brincar de cabo de guerra e proteger sua família. Thor é um amigo fiel que nunca deixa seus entes queridos desprotegidos. Ele nasceu em 30 de novembro de 2020."
+  },
+  {
+    "nome" : "Nina",
+    "tipo" : "Gato",
+    "imagem" : "https://cdn2.thecatapi.com/images/9qh.jpg",
+    "idade" : "2019-09-08",
+    "raca" : "Maine Coon",
+    "localizacao" : "Curitiba, Brasil",
+    "sexo" : "Fêmea",
+    "descricao" : "Uma gata Maine Coon majestosa e peluda.",
+    "sobre": "Nina é uma gata Maine Coon de grande porte e personalidade nobre. Ela adora brincar com brinquedos interativos e receber muita atenção. Nina é uma gata majestosa que cativa a todos com sua beleza. Ela nasceu em 8 de setembro de 2019."
+  },
+
+
+
+
+
+
+  {
+    "nome" : "Belinha",
+    "tipo" : "Cachorro",
+    "imagem" : "https://images.dog.ceo/breeds/terrier-russell/iguet1.jpg",
+    "idade" : "2020-03-19",
+    "raca" : "Dachshund",
+    "localizacao" : "São Paulo, Bairro: Vila Madalena",
+    "sexo" : "Fêmea",
+    "descricao" : "Uma Dachshund adorável e brincalhona.",
+    "sobre": "Belinha é uma Dachshund cheia de energia e disposição. Ela adora perseguir bolinhas e explorar o bairro de Vila Madalena em São Paulo. Belinha nasceu em 19 de março de 2020."
+  },
+  {
+    "nome" : "Simba",
+    "tipo" : "Gato",
+    "imagem" : "https://cdn2.thecatapi.com/images/dfo.jpg",
+    "idade" : "2019-12-10",
+    "raca" : "Siamês",
+    "localizacao" : "Rio de Janeiro, Bairro: Copacabana",
+    "sexo" : "Macho",
+    "descricao" : "Um gato Siamês elegante e vocal.",
+    "sobre": "Simba é um gato Siamês de personalidade expressiva. Ele adora conversar com seus humanos e é uma presença cativante em Copacabana, Rio de Janeiro. Simba nasceu em 10 de dezembro de 2019."
+  },
+  {
+    "nome" : "Lucky",
+    "tipo" : "Cachorro",
+    "imagem" : "https://images.dog.ceo/breeds/corgi-cardigan/n02113186_1030.jpg",
+    "idade" : "2018-08-25",
+    "raca" : "Border Collie",
+    "localizacao" : "Porto Alegre, Bairro: Moinhos de Vento",
+    "sexo" : "Macho",
+    "descricao" : "Um Border Collie inteligente e ágil.",
+    "sobre": "Lucky é um Border Collie altamente inteligente e atlético. Ele adora brincar de frisbee no parque Moinhos de Vento, em Porto Alegre. Lucky nasceu em 25 de agosto de 2018."
+  },
+  {
+    "nome" : "Misty",
+    "tipo" : "Gato",
+    "imagem" : "https://cdn2.thecatapi.com/images/5mu.jpg",
+    "idade" : "2020-05-07",
+    "raca" : "British Shorthair",
+    "localizacao" : "Salvador, Bairro: Barra",
+    "sexo" : "Fêmea",
+    "descricao" : "Uma gata British Shorthair de pelagem densa.",
+    "sobre": "Misty é uma gata British Shorthair de pelagem densa e olhos hipnotizantes. Ela é a estrela de Barra, Salvador, com seu charme irresistível. Misty nasceu em 7 de maio de 2020."
+  },
+
+
+
+
+
+
+  {
+    "nome" : "Ziggy",
+    "tipo" : "Cachorro",
+    "imagem" : "https://images.dog.ceo/breeds/ovcharka-caucasian/IMG_20190826_112025.jpg",
+    "idade" : "2019-06-18",
+    "raca" : "Bulldog Inglês",
+    "localizacao" : "São Paulo, Bairro: Vila Mariana",
+    "sexo" : "Macho",
+    "descricao" : "Um Bulldog Inglês adorável e tranquilo.",
+    "sobre": "Ziggy é um Bulldog Inglês com uma personalidade tranquila. Ele adora passear pelas ruas arborizadas da Vila Mariana, em São Paulo, e desfrutar do clima ameno. Ziggy nasceu em 18 de junho de 2019."
+  },
+  {
+    "nome" : "Nala",
+    "tipo" : "Gato",
+    "imagem" : "https://cdn2.thecatapi.com/images/MTYwODQ4OQ.jpg",
+    "idade" : "2020-02-14",
+    "raca" : "Siamês",
+    "localizacao" : "Rio de Janeiro, Bairro: Ipanema",
+    "sexo" : "Fêmea",
+    "descricao" : "Uma gata Siamês elegante e brincalhona.",
+    "sobre": "Nala é uma gata Siamês de personalidade brincalhona. Ela gosta de explorar as praias de Ipanema, no Rio de Janeiro, e brincar com conchas na areia. Nala nasceu em 14 de fevereiro de 2020."
+  },
+  {
+    "nome" : "Rusty",
+    "tipo" : "Cachorro",
+    "imagem" : "https://images.dog.ceo/breeds/terrier-australian/n02096294_7711.jpg",
+    "idade" : "2018-09-30",
+    "raca" : "Golden Retriever",
+    "localizacao" : "Porto Alegre, Bairro: Moinhos de Vento",
+    "sexo" : "Macho",
+    "descricao" : "Um Golden Retriever amigável e aventureiro.",
+    "sobre": "Rusty é um Golden Retriever com uma paixão por aventuras. Ele adora explorar o Parque Moinhos de Vento, em Porto Alegre, e nadar no lago. Rusty nasceu em 30 de setembro de 2018."
+  },
+  {
+    "nome" : "Loki",
+    "tipo" : "Gato",
+    "imagem" : "https://cdn2.thecatapi.com/images/MTc0MzI1OA.png",
+    "idade" : "2021-03-12",
+    "raca" : "Maine Coon",
+    "localizacao" : "Curitiba, Bairro: Batel",
+    "sexo" : "Macho",
+    "descricao" : "Um gato Maine Coon majestoso e afetuoso.",
+    "sobre": "Loki é um gato Maine Coon majestoso e afetuoso. Ele adora passar o tempo nos cafés acolhedores do bairro Batel, em Curitiba, e receber carinhos de estranhos. Loki nasceu em 12 de março de 2021."
+  },
+
+
+
+
+
+
+  {
+    "nome" : "Duke",
+    "tipo" : "Cachorro",
+    "imagem" : "https://images.dog.ceo/breeds/terrier-silky/n02097658_2665.jpg",
+    "idade" : "2020-04-25",
+    "raca" : "Labrador",
+    "localizacao" : "São Paulo, Bairro: Tatuapé",
+    "sexo" : "Macho",
+    "descricao" : "Um Labrador brincalhão e sociável.",
+    "sobre": "Duke é um Labrador cheio de energia e sociabilidade. Ele adora fazer novos amigos no bairro Tatuapé, em São Paulo, e é conhecido por seu entusiasmo contagiante. Duke nasceu em 25 de abril de 2020."
+  },
+  {
+    "nome" : "Milo",
+    "tipo" : "Gato",
+    "imagem" : "https://cdn2.thecatapi.com/images/acp.jpg",
+    "idade" : "2019-08-17",
+    "raca" : "Siamês",
+    "localizacao" : "Rio de Janeiro, Bairro: Laranjeiras",
+    "sexo" : "Macho",
+    "descricao" : "Um gato Siamês elegante e aventureiro.",
+    "sobre": "Milo é um gato Siamês com uma alma aventureira. Ele adora explorar as ruas e parques de Laranjeiras, no Rio de Janeiro, e está sempre em busca de novas aventuras. Milo nasceu em 17 de agosto de 2019."
+  },
+  {
+    "nome" : "Bella",
+    "tipo" : "Cachorro",
+    "imagem" : "https://images.dog.ceo/breeds/pitbull/IMG_20190826_121528_876.jpg",
+    "idade" : "2018-11-02",
+    "raca" : "Poodle",
+    "localizacao" : "Porto Alegre, Bairro: Petrópolis",
+    "sexo" : "Fêmea",
+    "descricao" : "Uma Poodle inteligente e adorável.",
+    "sobre": "Bella é uma Poodle cheia de inteligência e charme. Ela adora dar passeios pelo elegante bairro de Petrópolis, em Porto Alegre, e é conhecida por seu carinho incondicional. Bella nasceu em 2 de novembro de 2018."
+  },
+  {
+    "nome" : "Leo",
+    "tipo" : "Gato",
+    "imagem" : "https://cdn2.thecatapi.com/images/dsu.jpg",
+    "idade" : "2020-05-10",
+    "raca" : "Maine Coon",
+    "localizacao" : "Curitiba, Bairro: Água Verde",
+    "sexo" : "Macho",
+    "descricao" : "Um gato Maine Coon majestoso e brincalhão.",
+    "sobre": "Leo é um gato Maine Coon de grande porte e personalidade brincalhona. Ele adora brincar nos jardins do bairro Água Verde, em Curitiba, e é amigável com todos que encontra. Leo nasceu em 10 de maio de 2020."
+  },
+
+  {
+    "nome" : "Molly",
+    "tipo" : "Cachorro",
+    "imagem" : "https://images.dog.ceo/breeds/sheepdog-shetland/n02105855_6234.jpg",
+    "idade" : "2019-03-08",
+    "raca" : "Dachshund",
+    "localizacao" : "São Paulo, Bairro: Pinheiros",
+    "sexo" : "Fêmea",
+    "descricao" : "Uma Dachshund adorável e curiosa.",
+    "sobre": "Molly é uma Dachshund cheia de curiosidade e charme. Ela adora explorar as ruas e cafés do bairro Pinheiros, em São Paulo, e faz amizade com todos que encontra. Molly nasceu em 8 de março de 2019."
+  },
+  {
+    "nome" : "Oliver",
+    "tipo" : "Gato",
+    "imagem" : "https://cdn2.thecatapi.com/images/atc.jpg",
+    "idade" : "2020-07-12",
+    "raca" : "Siamês",
+    "localizacao" : "Rio de Janeiro, Bairro: Botafogo",
+    "sexo" : "Macho",
+    "descricao" : "Um gato Siamês elegante e sociável.",
+    "sobre": "Oliver é um gato Siamês com um toque de elegância. Ele adora passear pelo movimentado bairro de Botafogo, no Rio de Janeiro, e é conhecido por sua natureza sociável. Oliver nasceu em 12 de julho de 2020."
+  },
+  {
+    "nome" : "Rocky",
+    "tipo" : "Cachorro",
+    "imagem" : "https://images.dog.ceo/breeds/cotondetulear/IMG_20160830_202631573.jpg",
+    "idade" : "2018-10-16",
+    "raca" : "Bulldog Inglês",
+    "localizacao" : "Porto Alegre, Bairro: Moinhos de Vento",
+    "sexo" : "Macho",
+    "descricao" : "Um Bulldog Inglês tranquilo e afetuoso.",
+    "sobre": "Rocky é um Bulldog Inglês de personalidade tranquila. Ele gosta de caminhar pelas ruas arborizadas do bairro Moinhos de Vento, em Porto Alegre, e receber carinhos de todos que passam por ele. Rocky nasceu em 16 de outubro de 2018."
+  },
+  {
+    "nome" : "Mia",
+    "tipo" : "Gato",
+    "imagem" : "https://cdn2.thecatapi.com/images/6tk.jpg",
+    "idade" : "2019-04-23",
+    "raca" : "Maine Coon",
+    "localizacao" : "Curitiba, Bairro: Juvevê",
+    "sexo" : "Fêmea",
+    "descricao" : "Uma gata Maine Coon majestosa e brincalhona.",
+    "sobre": "Mia é uma gata Maine Coon de grande porte e personalidade brincalhona. Ela adora brincar nos jardins e praças do bairro Juvevê, em Curitiba, e é conhecida por seu carisma. Mia nasceu em 23 de abril de 2019."
   }
+
+
+
+
+
+
+
+
+
 
 
 
