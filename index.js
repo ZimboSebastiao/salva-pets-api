@@ -21,7 +21,7 @@ const publicDir = path.join(__dirname, 'public');
 app.use(express.static(publicDir));
 
 app.get('/', (req, res) => {
-    res.send(`Página raiz`);
+    res.redirect('https://documenter.getpostman.com/view/29899654/2s9YJgSfcx');
 });
 
 app.get('/pets/:id', (req, res) => {

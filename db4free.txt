@@ -1,11 +1,11 @@
 Host: db4free.net
-Nome do banco de dados MySQL:  apizimbo
-Nome de usuário MySQL:  zimbosebastiao
-Senha do MySQL: Zimbo123@
+Nome do banco de dados MySQL:  petsapi
+Nome de usuário MySQL:  salvapets
+Senha do MySQL: Salvapets123@
 E-mail: gloriasebastiao7@gmail.com
 
 npm i cors
 
-https://escolazimbo.onrender.com/alunos
-https://documenter.getpostman.com/view/29885708/2s9YJZ34YJ
-https://documenter.getpostman.com/view/29885708/2s9YJZ34YJ
+https://salvapets.onrender.com
+https://documenter.getpostman.com/view/29899654/2s9YJgSfcx
+
