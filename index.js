@@ -40,15 +40,26 @@ app.post('/pets', async (req, res) => {
 
     try {
         // Faz o download da imagem a partir do URL fornecido pelo cliente usando axios
-        const response = await axios.get(imagemUrl, { responseType: 'arraybuffer' });
+        const response = await axios.get(imagemUrl, { responseType: 'stream' }); // Use 'stream' como responseType
 
-        // Salva a imagem no sistema de arquivos no diretório 'public/images'
-        fs.writeFileSync(caminhoDaImagem, Buffer.from(response.data));
+        // Crie um stream de escrita para salvar a imagem
+        const writer = fs.createWriteStream(caminhoDaImagem);
 
-        // Atualiza o objeto pet com o caminho relativo da imagem 
-        novoPet.imagem = '/images/' + imagemNome;
+        // Use pipe para escrever o stream de leitura (imagem) no stream de escrita (arquivo)
+        response.data.pipe(writer);
 
-        inserir(novoPet, res);
+        // Use eventos para controlar quando a imagem foi completamente escrita
+        writer.on('finish', () => {
+            // Atualiza o objeto pet com o caminho relativo da imagem 
+            novoPet.imagem = '/images/' + imagemNome;
+
+            inserir(novoPet, res);
+        });
+
+        writer.on('error', (err) => {
+            console.error(err);
+            res.status(500).json({ mensagem: 'Erro ao salvar a imagem' });
+        });
     } catch (err) {
         console.error(err);
         res.status(500).json({ mensagem: 'Erro ao salvar a imagem' });
