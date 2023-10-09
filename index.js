@@ -35,8 +35,9 @@ app.get('/pets', (req, res) => {
 app.post('/pets', async (req, res) => {
     const novoPet = req.body;
     const imagemUrl = req.body.imagem; // URL da imagem fornecida pelo cliente
-    const imagemNome = Date.now() + '_' + novoPet.nome + '.jpg'; // Nome da imagem com extensão
-    const caminhoDaImagem = path.join(publicDir, 'images', imagemNome); // Constrói o caminho completo da imagem
+    const nomeArquivoOriginal = Date.now() + '_' + novoPet.nome + '.jpg'; // Nome da imagem com espaços
+    const nomeArquivoSemEspacos = nomeArquivoOriginal.replace(/\s+/g, '_'); // Substitui espaços por sublinhados
+    const caminhoDaImagem = path.join(publicDir, 'images', nomeArquivoSemEspacos); // Constrói o caminho completo da imagem
 
     try {
         // Faz o download da imagem a partir do URL fornecido pelo cliente usando axios
@@ -47,8 +48,8 @@ app.post('/pets', async (req, res) => {
 
         // Use eventos para controlar o término da gravação do arquivo
         writer.on('finish', () => {
-            // Atualiza o objeto pet com o caminho relativo da imagem 
-            novoPet.imagem = '/images/' + imagemNome;
+            // Atualiza o objeto pet com o caminho relativo da imagem (nomeArquivoOriginal com espaços)
+            novoPet.imagem = '/images/' + nomeArquivoOriginal;
 
             inserir(novoPet, res);
         });
