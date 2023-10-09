@@ -17,7 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 const publicDir = path.join(__dirname, 'public');
-app.use(express.static(publicDir)); // Configura o middleware de arquivos estáticos
+app.use(express.static(publicDir)); 
 
 app.get('/', (req, res) => {
     res.redirect('https://documenter.getpostman.com/view/29899654/2s9YJgSfcx');
