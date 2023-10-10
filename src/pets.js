@@ -24,39 +24,23 @@ function ler(res) {
 }
 
 // Inserindo pets no banco de dados
-// function inserir(pet, res){
-//     const sql = "INSERT INTO pets SET ?";
-//     conexao.query(sql, pet, (erro) => {
-
-//         if (erro) {
-//             res.status(400).json(erro.code);
-
-//         } else {
-//             res.status(201).json({"status" : "Pet Adicionado com sucesso."});
-//         }
-//     });
-    
-// }
-
-
-
-// Inserindo pets no banco de dados
-function inserir(pet, res) {
-    // Leitura da imagem como um fluxo de bytes
-    const imagemBytes = fs.readFileSync(pet.imagem);
-
-    // Defina a imagem como dados binários no objeto pet
-    pet.imagem = imagemBytes;
-
+function inserir(pet, res){
     const sql = "INSERT INTO pets SET ?";
     conexao.query(sql, pet, (erro) => {
+
         if (erro) {
             res.status(400).json(erro.code);
+
         } else {
-            res.status(201).json({ "status": "Pet Adicionado com sucesso." });
+            res.status(201).json({"status" : "Pet Adicionado com sucesso."});
         }
     });
+    
 }
+
+
+
+
 
 
 
