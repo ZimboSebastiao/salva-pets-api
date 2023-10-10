@@ -35,7 +35,9 @@ app.get('/pets', (req, res) => {
 app.post('/pets', async (req, res) => {
     const novoPet = req.body;
     const imagemUrl = req.body.imagem; // URL da imagem fornecida pelo cliente
-    const imagemNome = Date.now() + '_' + novoPet.nome + '.jpg'; // Nome da imagem com extensão
+    const extensao = path.extname(imagemUrl); // Obtém a extensão da imagem a partir do URL
+    const nomeLimpo = novoPet.nome.replace(/[^a-zA-Z0-9]/g, '').toLowerCase(); // Nome do pet sem caracteres especiais, convertido para letras minúsculas
+    const imagemNome = nomeLimpo + extensao; // Nome da imagem em letras minúsculas com a extensão
     const caminhoDaImagem = path.join(publicDir, 'images', imagemNome); // Constrói o caminho completo da imagem
 
     try {
