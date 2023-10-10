@@ -42,8 +42,8 @@ app.post('/pets', async (req, res) => {
 
     try {
         // Faz o download da imagem a partir do URL fornecido pelo cliente usando axios
-        const response = await axios.get(imagemUrl, { responseType: 'arraybuffer' }); // Use 'stream' como responseType
-        const fileData = Buffer.from(response.data, 'binary');
+        const response = await axios.get(imagemUrl, { responseType: 'stream' }); // Use 'stream' como responseType
+        
 
         if (response.status !== 200) {
             // Se a resposta não for bem-sucedida, retorne um erro
@@ -51,7 +51,7 @@ app.post('/pets', async (req, res) => {
         }
 
         // Crie um stream de escrita para salvar a imagem
-        const writer = fs.createFile(caminhoDaImagem);
+        const writer = fs.createWriteStream(caminhoDaImagem);
 
         // Use eventos para controlar o término da gravação do arquivo
         writer.on('finish', () => {
