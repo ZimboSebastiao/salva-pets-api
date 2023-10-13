@@ -35,20 +35,12 @@ app.get('/pets', (req, res) => {
 app.post('/pets', async (req, res) => {
     const novoPet = req.body;
     const imagemUrl = req.body.imagem; // URL da imagem fornecida pelo cliente
-    const extensao = path.extname(imagemUrl); // Obtém a extensão da imagem a partir do URL
-    const nomeLimpo = novoPet.nome.replace(/[^a-zA-Z0-9]/g, '').toLowerCase(); // Nome do pet sem caracteres especiais, convertido para letras minúsculas
-    const imagemNome = nomeLimpo + extensao; // Nome da imagem em letras minúsculas com a extensão
+    const imagemNome = Date.now() + '_' + novoPet.nome + '.jpg'; // Nome da imagem com extensão
     const caminhoDaImagem = path.join(publicDir, 'images', imagemNome); // Constrói o caminho completo da imagem
 
     try {
         // Faz o download da imagem a partir do URL fornecido pelo cliente usando axios
         const response = await axios.get(imagemUrl, { responseType: 'stream' }); // Use 'stream' como responseType
-        
-
-        if (response.status !== 200) {
-            // Se a resposta não for bem-sucedida, retorne um erro
-            return res.status(response.status).json({ mensagem: 'Erro ao baixar a imagem' });
-        }
 
         // Crie um stream de escrita para salvar a imagem
         const writer = fs.createWriteStream(caminhoDaImagem);
@@ -73,7 +65,6 @@ app.post('/pets', async (req, res) => {
         res.status(500).json({ mensagem: 'Erro ao salvar a imagem' });
     }
 });
-
 
 app.patch('/pets/:id', (req, res) => {
     const id = parseInt(req.params.id);
