@@ -45,7 +45,10 @@ app.post('/pets', async (req, res) => {
         // Crie um stream de escrita para salvar a imagem
         const writer = fs.createWriteStream(caminhoDaImagem);
 
-        // Use eventos para controlar o término da gravação do arquivo
+        // Use pipe para escrever o stream de leitura (imagem) no stream de escrita (arquivo)
+        response.data.pipe(writer);
+
+        // Use eventos para controlar quando a imagem foi completamente escrita
         writer.on('finish', () => {
             // Atualiza o objeto pet com o caminho relativo da imagem 
             novoPet.imagem = '/images/' + imagemNome;
@@ -57,9 +60,6 @@ app.post('/pets', async (req, res) => {
             console.error(err);
             res.status(500).json({ mensagem: 'Erro ao salvar a imagem' });
         });
-
-        // Pipe o stream de leitura (imagem) para o stream de escrita (arquivo)
-        response.data.pipe(writer);
     } catch (err) {
         console.error(err);
         res.status(500).json({ mensagem: 'Erro ao salvar a imagem' });
