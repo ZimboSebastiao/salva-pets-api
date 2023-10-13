@@ -68,7 +68,7 @@ app.post('/pets', async (req, res) => {
 
             inserir(novoPet, res);
 
-            console.log(`Imagem salva com sucesso: ${imagemNome}`); // Registra sucesso no console
+            console.log(`Imagem salva com sucesso: ${imagemNome}`); 
             contarImagens();
         });
 
@@ -77,7 +77,6 @@ app.post('/pets', async (req, res) => {
             res.status(500).json({ mensagem: 'Erro ao salvar a imagem', erro: err.message });
         });
 
-        // Pipe o stream de leitura (imagem) para o stream de escrita (arquivo)
         response.data.pipe(writer);
     } catch (err) {
         console.error(err);
@@ -101,7 +100,6 @@ const contarImagens = async () => {
         // Diretório das imagens
         const files = await fs.readdir(imagesDir);
 
-        // Filtra os arquivos de imagem com extensão .jpg ou .png (ou outras extensões que desejar)
         const imagens = files.filter(file => /\.(jpg|png|jpeg|gif)$/i.test(file));
 
         console.log(`Número de imagens no diretório: ${imagens.length}`);
