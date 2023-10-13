@@ -5,6 +5,7 @@ import axios from 'axios';
 import fs from 'fs/promises';
 import url from 'url';
 import path from 'path';
+import { createWriteStream } from 'fs';
 
 const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -43,7 +44,8 @@ app.post('/pets', async (req, res) => {
         const response = await axios.get(imagemUrl, { responseType: 'stream' }); // Use 'stream' como responseType
 
         // Crie um stream de escrita para salvar a imagem
-        const writer = fs.createWriteStream(caminhoDaImagem);
+        // const writer = fs.createWriteStream(caminhoDaImagem);
+        const writer = createWriteStream(caminhoDaImagem);
 
         // Use eventos para controlar o término da gravação do arquivo
         writer.on('finish', () => {
