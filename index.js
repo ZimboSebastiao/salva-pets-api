@@ -40,29 +40,31 @@ app.post('/pets', async (req, res) => {
     const caminhoDaImagem = path.join(publicDir, 'images', imagemNome); // Constrói o caminho completo da imagem
 
     try {
-        // Verifica se o diretório de imagens existe, se não, cria-o
-        try {
-            await fs.access(path.join(publicDir, 'images'));
-        } catch (error) {
-            if (error.code === 'ENOENT') {
-                // Diretório não existe, crie-o
-                await fs.mkdir(path.join(publicDir, 'images'), { recursive: true });
-            }
-        }
+        // Faz o download da imagem a partir do URL fornecido pelo cliente usando axios
+        const response = await axios.get(imagemUrl, { responseType: 'stream' }); // Use 'stream' como responseType
 
-        // Continua com o código para baixar e salvar a imagem
-        const response = await axios.get(imagemUrl, { responseType: 'stream' });
+        // Crie um stream de escrita para salvar a imagem
+        // const writer = fs.createWriteStream(caminhoDaImagem);
         const writer = createWriteStream(caminhoDaImagem);
 
+        // Use eventos para controlar o término da gravação do arquivo
         writer.on('finish', () => {
+            // Atualiza o objeto pet com o caminho relativo da imagem 
             novoPet.imagem = '/images/' + imagemNome;
+
             inserir(novoPet, res);
 
-            console.log(`Imagem salva com sucesso: ${imagemNome}`);
-            contarImagens();
+            console.log(`Imagem salva com sucesso: ${imagemNome}`); // Registra sucesso no console
+              contarImagens();
         });
 
-        // ...
+        writer.on('error', (err) => {
+            console.error(err);
+            res.status(500).json({ mensagem: 'Erro ao salvar a imagem', erro: err.message });
+        });
+
+        // Pipe o stream de leitura (imagem) para o stream de escrita (arquivo)
+        response.data.pipe(writer);
     } catch (err) {
         console.error(err);
         res.status(500).json({ mensagem: 'Erro ao salvar a imagem' });
