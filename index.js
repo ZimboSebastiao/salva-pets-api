@@ -35,36 +35,29 @@ app.get('/pets', (req, res) => {
 
 app.post('/pets', async (req, res) => {
     const novoPet = req.body;
-    const imagemUrl = req.body.imagem; // URL da imagem fornecida pelo cliente
-    const imagemNome = Date.now() + '_' + novoPet.nome + '.jpg'; // Nome da imagem com extensão
-    const caminhoDaImagem = path.join(publicDir, 'images', imagemNome); // Constrói o caminho completo da imagem
+    const imagemUrl = req.body.imagem;
+    const imagemNome = Date.now() + '_' + novoPet.nome + '.jpg';
+    const caminhoDaImagem = path.join(publicDir, 'images', imagemNome);
 
     try {
-        // Faz o download da imagem a partir do URL fornecido pelo cliente usando axios
-        const response = await axios.get(imagemUrl, { responseType: 'stream' }); // Use 'stream' como responseType
+        // Verifica se o diretório de imagens existe, se não, cria-o
+        if (!fs.existsSync(path.join(publicDir, 'images'))) {
+            fs.mkdirSync(path.join(publicDir, 'images'));
+        }
 
-        // Crie um stream de escrita para salvar a imagem
-        // const writer = fs.createWriteStream(caminhoDaImagem);
+        // Continua com o código para baixar e salvar a imagem
+        const response = await axios.get(imagemUrl, { responseType: 'stream' });
         const writer = createWriteStream(caminhoDaImagem);
 
-        // Use eventos para controlar o término da gravação do arquivo
         writer.on('finish', () => {
-            // Atualiza o objeto pet com o caminho relativo da imagem 
             novoPet.imagem = '/images/' + imagemNome;
-
             inserir(novoPet, res);
 
-            console.log(`Imagem salva com sucesso: ${imagemNome}`); // Registra sucesso no console
+            console.log(`Imagem salva com sucesso: ${imagemNome}`);
             contarImagens();
         });
 
-        writer.on('error', (err) => {
-            console.error(err);
-            res.status(500).json({ mensagem: 'Erro ao salvar a imagem', erro: err.message });
-        });
-
-        // Pipe o stream de leitura (imagem) para o stream de escrita (arquivo)
-        response.data.pipe(writer);
+        // ...
     } catch (err) {
         console.error(err);
         res.status(500).json({ mensagem: 'Erro ao salvar a imagem' });
