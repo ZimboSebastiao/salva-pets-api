@@ -2,7 +2,7 @@ import express from "express";
 import { ler, inserir, lerUm, atualizar, excluir } from "./src/pets.js";
 import cors from 'cors';
 import axios from 'axios';
-import fs from 'fs';
+import fs from 'fs/promises';
 import url from 'url';
 import path from 'path';
 
@@ -83,23 +83,23 @@ app.delete('/pets/:id', (req, res) => {
 
 
 const contarImagens = async () => {
-  try {
-    // Diretório das imagens
-    const imagensDir = path.join(__dirname, 'public', 'images');
-
-    // Lê o diretório
-    const files = await fs.readdir(imagensDir);
-
-    // Filtra os arquivos de imagem com extensão .jpg ou .png (ou outras extensões que desejar)
-    const imagens = files.filter(file => /\.(jpg|png|jpeg|gif)$/i.test(file));
-    
-    console.log(`Número de imagens no diretório: ${imagens.length}`);
-  } catch (err) {
-    console.error('Erro ao ler o diretório de imagens:', err);
-  }
-};
-
-contarImagens();
+    try {
+      // Diretório das imagens
+      const imagensDir = path.join(__dirname, 'public', 'images');
+  
+      // Lê o diretório
+      const files = await fs.readdir(imagensDir);
+  
+      // Filtra os arquivos de imagem com extensão .jpg ou .png (ou outras extensões que desejar)
+      const imagens = files.filter(file => /\.(jpg|png|jpeg|gif)$/i.test(file));
+      
+      console.log(`Número de imagens no diretório: ${imagens.length}`);
+    } catch (err) {
+      console.error('Erro ao ler o diretório de imagens:', err);
+    }
+  };
+  
+  contarImagens();
 
 
 
