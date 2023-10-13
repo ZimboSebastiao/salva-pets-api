@@ -35,14 +35,19 @@ app.get('/pets', (req, res) => {
 
 app.post('/pets', async (req, res) => {
     const novoPet = req.body;
-    const imagemUrl = req.body.imagem;
-    const imagemNome = Date.now() + '_' + novoPet.nome + '.jpg';
-    const caminhoDaImagem = path.join(publicDir, 'images', imagemNome);
+    const imagemUrl = req.body.imagem; // URL da imagem fornecida pelo cliente
+    const imagemNome = Date.now() + '_' + novoPet.nome + '.jpg'; // Nome da imagem com extensão
+    const caminhoDaImagem = path.join(publicDir, 'images', imagemNome); // Constrói o caminho completo da imagem
 
     try {
         // Verifica se o diretório de imagens existe, se não, cria-o
-        if (!fs.existsSync(path.join(publicDir, 'images'))) {
-            fs.mkdirSync(path.join(publicDir, 'images'));
+        try {
+            await fs.access(path.join(publicDir, 'images'));
+        } catch (error) {
+            if (error.code === 'ENOENT') {
+                // Diretório não existe, crie-o
+                await fs.mkdir(path.join(publicDir, 'images'), { recursive: true });
+            }
         }
 
         // Continua com o código para baixar e salvar a imagem
