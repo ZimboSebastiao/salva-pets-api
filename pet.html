@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Pet</title>
+</head>
+<body>
+    <h1>Detalhes do Pet</h1>
+    <div>
+        <h2>Nome: <span id="nome"></span></h2>
+        <h2>Idade: <span id="idade"></span></h2>
+        <h2>Raça: <span id="raca"></span></h2>
+        <h2>Sexo: <span id="sexo"></span></h2>
+        <h2>Descrição: <span id="descricao"></span></h2>
+        <img src="" alt="Imagem do Pet" id="imagem">
+    </div>
+
+    <script>
+        // Recupere os dados do pet da API e atualize a página
+        fetch('http://localhost:8080/pets/2') // Substitua '2' pelo ID do pet que deseja visualizar
+            .then(response => response.json())
+            .then(pet => {
+                document.getElementById('nome').textContent = pet.nome;
+                document.getElementById('idade').textContent = pet.idade;
+                document.getElementById('raca').textContent = pet.raca;
+                document.getElementById('sexo').textContent = pet.sexo;
+                document.getElementById('descricao').textContent = pet.descricao;
+                document.getElementById('imagem').src = `/imagens/${pet.imagem}`;
+            });
+    </script>
+</body>
+</html>

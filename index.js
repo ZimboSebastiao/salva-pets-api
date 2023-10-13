@@ -51,12 +51,13 @@ app.post('/pets', async (req, res) => {
             novoPet.imagem = '/images/' + imagemNome;
 
             inserir(novoPet, res);
+
+            console.log(`Imagem salva com sucesso: ${imagemNome}`); // Registra sucesso no console
         });
 
         writer.on('error', (err) => {
             console.error(err);
             res.status(500).json({ mensagem: 'Erro ao salvar a imagem', erro: err.message });
-
         });
 
         // Pipe o stream de leitura (imagem) para o stream de escrita (arquivo)
@@ -66,6 +67,7 @@ app.post('/pets', async (req, res) => {
         res.status(500).json({ mensagem: 'Erro ao salvar a imagem' });
     }
 });
+
 
 app.patch('/pets/:id', (req, res) => {
     const id = parseInt(req.params.id);
@@ -77,6 +79,33 @@ app.delete('/pets/:id', (req, res) => {
     const id = parseInt(req.params.id);
     excluir(id, res);
 });
+
+
+
+import fs from 'fs/promises';
+import path from 'path';
+
+const contarImagens = async () => {
+  try {
+    // Diretório das imagens
+    const imagensDir = path.join(__dirname, 'public', 'images');
+
+    // Lê o diretório
+    const files = await fs.readdir(imagensDir);
+
+    // Filtra os arquivos de imagem com extensão .jpg ou .png (ou outras extensões que desejar)
+    const imagens = files.filter(file => /\.(jpg|png|jpeg|gif)$/i.test(file));
+    
+    console.log(`Número de imagens no diretório: ${imagens.length}`);
+  } catch (err) {
+    console.error('Erro ao ler o diretório de imagens:', err);
+  }
+};
+
+contarImagens();
+
+
+
 
 app.listen(porta, () => {
     console.log(`Servidor NodeJS rodando na porta ${porta}`);
