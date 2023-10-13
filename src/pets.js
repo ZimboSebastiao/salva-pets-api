@@ -1,8 +1,4 @@
 import conexao from "./banco.js";
-const fs = require('fs');
-
-
-
 
 // Ler/exibir todos os pets
 function ler(res) {

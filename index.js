@@ -17,7 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 const publicDir = path.join(__dirname, 'public');
-app.use(express.static(publicDir)); 
+app.use('/images', express.static('images')); 
 
 app.get('/', (req, res) => {
     res.redirect('https://documenter.getpostman.com/view/29899654/2s9YJgSfcx');
@@ -45,10 +45,7 @@ app.post('/pets', async (req, res) => {
         // Crie um stream de escrita para salvar a imagem
         const writer = fs.createWriteStream(caminhoDaImagem);
 
-        // Use pipe para escrever o stream de leitura (imagem) no stream de escrita (arquivo)
-        response.data.pipe(writer);
-
-        // Use eventos para controlar quando a imagem foi completamente escrita
+        // Use eventos para controlar o término da gravação do arquivo
         writer.on('finish', () => {
             // Atualiza o objeto pet com o caminho relativo da imagem 
             novoPet.imagem = '/images/' + imagemNome;
@@ -60,6 +57,9 @@ app.post('/pets', async (req, res) => {
             console.error(err);
             res.status(500).json({ mensagem: 'Erro ao salvar a imagem' });
         });
+
+        // Pipe o stream de leitura (imagem) para o stream de escrita (arquivo)
+        response.data.pipe(writer);
     } catch (err) {
         console.error(err);
         res.status(500).json({ mensagem: 'Erro ao salvar a imagem' });
