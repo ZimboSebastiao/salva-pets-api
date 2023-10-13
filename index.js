@@ -15,8 +15,8 @@ const porta = process.env.PORT || 3306;
 app.use(express.json());
 app.use(cors());
 
-const publicDir = path.join(__dirname, 'public');
-app.use('/images', express.static(publicDir));
+const publicDir = path.join(__dirname, 'public'); 
+app.use('/images', express.static(path.join(publicDir, 'images')));
 
 
 app.get('/', (req, res) => {
