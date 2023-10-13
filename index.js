@@ -55,6 +55,7 @@ app.post('/pets', async (req, res) => {
             inserir(novoPet, res);
 
             console.log(`Imagem salva com sucesso: ${imagemNome}`); // Registra sucesso no console
+            contarImagens();
         });
 
         writer.on('error', (err) => {
@@ -101,7 +102,7 @@ const contarImagens = async () => {
     }
   };
   
-  contarImagens();
+
 
 
 
