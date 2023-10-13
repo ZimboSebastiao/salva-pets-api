@@ -13,7 +13,6 @@ const app = express();
 const porta = process.env.PORT || 3306;
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 const publicDir = path.join(__dirname, 'public');
@@ -56,7 +55,8 @@ app.post('/pets', async (req, res) => {
 
         writer.on('error', (err) => {
             console.error(err);
-            res.status(500).json({ mensagem: 'Erro ao salvar a imagem' });
+            res.status(500).json({ mensagem: 'Erro ao salvar a imagem', erro: err.message });
+
         });
 
         // Pipe o stream de leitura (imagem) para o stream de escrita (arquivo)
