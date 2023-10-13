@@ -16,9 +16,22 @@ const porta = process.env.PORT || 3306;
 app.use(express.json());
 app.use(cors());
 
-const publicDir = path.join(__dirname, 'public'); 
-app.use('/images', express.static(path.join(publicDir, 'images')));
+const publicDir = path.join(__dirname, 'public');
+const imagesDir = path.join(publicDir, 'images');
 
+// Verifica se o diretório de imagens existe, se não, cria-o
+const createImagesDir = async () => {
+    try {
+        await fs.access(imagesDir);
+    } catch (error) {
+        if (error.code === 'ENOENT') {
+            // Diretório não existe, crie-o
+            await fs.mkdir(imagesDir, { recursive: true });
+        }
+    }
+};
+
+app.use('/images', express.static(imagesDir));
 
 app.get('/', (req, res) => {
     res.redirect('https://documenter.getpostman.com/view/29899654/2s9YJgSfcx');
@@ -37,17 +50,18 @@ app.post('/pets', async (req, res) => {
     const novoPet = req.body;
     const imagemUrl = req.body.imagem; // URL da imagem fornecida pelo cliente
     const imagemNome = Date.now() + '_' + novoPet.nome + '.jpg'; // Nome da imagem com extensão
-    const caminhoDaImagem = path.join(publicDir, 'images', imagemNome); // Constrói o caminho completo da imagem
+    const caminhoDaImagem = path.join(imagesDir, imagemNome); // Constrói o caminho completo da imagem
 
     try {
+        // Cria o diretório de imagens se não existir
+        await createImagesDir();
+
         // Faz o download da imagem a partir do URL fornecido pelo cliente usando axios
-        const response = await axios.get(imagemUrl, { responseType: 'stream' }); // Use 'stream' como responseType
+        const response = await axios.get(imagemUrl, { responseType: 'stream' });
 
         // Crie um stream de escrita para salvar a imagem
-        // const writer = fs.createWriteStream(caminhoDaImagem);
         const writer = createWriteStream(caminhoDaImagem);
 
-        // Use eventos para controlar o término da gravação do arquivo
         writer.on('finish', () => {
             // Atualiza o objeto pet com o caminho relativo da imagem 
             novoPet.imagem = '/images/' + imagemNome;
@@ -55,7 +69,7 @@ app.post('/pets', async (req, res) => {
             inserir(novoPet, res);
 
             console.log(`Imagem salva com sucesso: ${imagemNome}`); // Registra sucesso no console
-              contarImagens();
+            contarImagens();
         });
 
         writer.on('error', (err) => {
@@ -71,7 +85,6 @@ app.post('/pets', async (req, res) => {
     }
 });
 
-
 app.patch('/pets/:id', (req, res) => {
     const id = parseInt(req.params.id);
     const pet = req.body;
@@ -83,29 +96,19 @@ app.delete('/pets/:id', (req, res) => {
     excluir(id, res);
 });
 
-
-
 const contarImagens = async () => {
     try {
-      // Diretório das imagens
-      const imagensDir = path.join(__dirname, 'public', 'images');
-  
-      // Lê o diretório
-      const files = await fs.readdir(imagensDir);
-  
-      // Filtra os arquivos de imagem com extensão .jpg ou .png (ou outras extensões que desejar)
-      const imagens = files.filter(file => /\.(jpg|png|jpeg|gif)$/i.test(file));
-      
-      console.log(`Número de imagens no diretório: ${imagens.length}`);
+        // Diretório das imagens
+        const files = await fs.readdir(imagesDir);
+
+        // Filtra os arquivos de imagem com extensão .jpg ou .png (ou outras extensões que desejar)
+        const imagens = files.filter(file => /\.(jpg|png|jpeg|gif)$/i.test(file));
+
+        console.log(`Número de imagens no diretório: ${imagens.length}`);
     } catch (err) {
-      console.error('Erro ao ler o diretório de imagens:', err);
+        console.error('Erro ao ler o diretório de imagens:', err);
     }
-  };
-  
-
-
-
-
+};
 
 app.listen(porta, () => {
     console.log(`Servidor NodeJS rodando na porta ${porta}`);
