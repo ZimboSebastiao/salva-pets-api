@@ -82,9 +82,6 @@ app.delete('/pets/:id', (req, res) => {
 
 
 
-import fs from 'fs/promises';
-import path from 'path';
-
 const contarImagens = async () => {
   try {
     // Diretório das imagens
