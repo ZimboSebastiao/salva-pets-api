@@ -60,7 +60,7 @@ app.post('/pets', async (req, res) => {
 
         if (response.ok) {
             // Obtenha o conteúdo da imagem em forma de buffer
-            const buffer = await response.buffer();
+            const buffer = Buffer.from(await response.arrayBuffer());
 
             // Salva o buffer no arquivo
             await fs.writeFile(caminhoDaImagem, Buffer.from(buffer));
@@ -110,7 +110,7 @@ const contarImagens = async () => {
 
 // Função para fazer upload de imagem para o GitHub (exemplo)
 async function uploadImageToGitHub(imagemNome, caminhoDaImagem) {
-    const token = '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';
+    const token = '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';
     const owner = 'ZimboSebastiao';
     const repo = 'salva-pets-api'; // Nome do repositório, não a URL completa
     const uploadPath = `public/images/${imagemNome}`; // Caminho do arquivo no repositório
