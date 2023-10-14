@@ -49,8 +49,8 @@ app.get('/pets', (req, res) => {
 
 app.post('/pets', async (req, res) => {
     const novoPet = req.body;
-    const imagemUrl = req.body.imagem; // URL da imagem fornecida pelo cliente
-    const imagemNome = Date.now() + '_' + novoPet.nome + '.jpg'; // Nome da imagem com extensão
+    const imagemUrl = req.body.imagem;
+    const imagemNome = Date.now() + '_' + novoPet.nome + '.jpg';
     const caminhoDaImagem = path.join(imagesDir, imagemNome);
 
     try {
@@ -61,31 +61,22 @@ app.post('/pets', async (req, res) => {
         const response = await fetch(imagemUrl);
 
         if (response.ok) {
-            // Crie um stream de escrita para salvar a imagem
-            const writer = fs.createWriteStream(caminhoDaImagem);
-
-            writer.on('finish', async () => {
-                // Atualiza o objeto pet com o caminho relativo da imagem
-                novoPet.imagem = '/images/' + imagemNome;
-
-                // Salvar a imagem no GitHub (adapte para suas necessidades)
-                await uploadImageToGitHub(imagemNome, caminhoDaImagem);
-
-                inserir(novoPet, res);
-
-                console.log(`Imagem salva com sucesso: ${imagemNome}`);
-                contarImagens();
-            });
-
-            writer.on('error', (err) => {
-                console.error(err);
-                res.status(500).json({ mensagem: 'Erro ao salvar a imagem', erro: err.message });
-            });
-
-            // Pipe o stream de leitura (imagem) para o stream de escrita (arquivo)
+            // Obtenha o conteúdo da imagem em forma de buffer
             const buffer = await response.buffer();
-            writer.write(buffer);
-            writer.end();
+
+            // Salva o buffer no arquivo
+            await fs.promises.writeFile(caminhoDaImagem, buffer);
+
+            // Atualiza o objeto pet com o caminho relativo da imagem
+            novoPet.imagem = '/images/' + imagemNome;
+
+            // Salvar a imagem no GitHub (adapte para suas necessidades)
+            await uploadImageToGitHub(imagemNome, caminhoDaImagem);
+
+            inserir(novoPet, res);
+
+            console.log(`Imagem salva com sucesso: ${imagemNome}`);
+            contarImagens();
         } else {
             res.status(response.status).json({ mensagem: 'Erro ao baixar a imagem' });
         }
