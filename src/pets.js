@@ -82,11 +82,10 @@ function excluir(id, res) {
             console.error("Erro ao excluir pet:", erro); // Registra um erro no console
             res.status(400).json(erro.code);
         } else {
-            console.log(`Pet excluído com sucesso. ID: ${id}`); // Registra sucesso no console
+            console.log(`Pet excluído com sucesso. ID: ${id}`); 
             res.status(200).json({ "Status": "Pet Excluído", id });
         }
     });
 }
-
 
 export {ler, inserir, lerUm, atualizar, excluir};

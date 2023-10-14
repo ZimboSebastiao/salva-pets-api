@@ -50,8 +50,7 @@ app.post('/pets', async (req, res) => {
     const novoPet = req.body;
     const imagemUrl = req.body.imagem; // URL da imagem fornecida pelo cliente
     const imagemNome = Date.now() + '_' + novoPet.nome + '.jpg'; // Nome da imagem com extensão
-    const caminhoDaImagem = path.join(imagesDir, imagemNome); // Constrói o caminho completo da imagem
-
+    const caminhoDaImagem = path.join(imagesDir, imagemNome);
     try {
         // Cria o diretório de imagens se não existir
         await createImagesDir();
