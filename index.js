@@ -7,6 +7,9 @@ import url from 'url';
 import path from 'path';
 import { createWriteStream } from 'fs';
 
+// Importe o pacote node-fetch
+import fetch from 'node-fetch';
+
 const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -51,32 +54,38 @@ app.post('/pets', async (req, res) => {
     const imagemUrl = req.body.imagem; // URL da imagem fornecida pelo cliente
     const imagemNome = Date.now() + '_' + novoPet.nome + '.jpg'; // Nome da imagem com extensão
     const caminhoDaImagem = path.join(imagesDir, imagemNome);
+
     try {
         // Cria o diretório de imagens se não existir
         await createImagesDir();
 
-        // Faz o download da imagem a partir do URL fornecido pelo cliente usando axios
-        const response = await axios.get(imagemUrl, { responseType: 'stream' });
+        // Faz o download da imagem a partir do URL fornecido pelo cliente usando node-fetch
+        const response = await fetch(imagemUrl);
 
-        // Crie um stream de escrita para salvar a imagem
-        const writer = createWriteStream(caminhoDaImagem);
+        if (response.ok) {
+            // Crie um stream de escrita para salvar a imagem
+            const writer = createWriteStream(caminhoDaImagem);
 
-        writer.on('finish', () => {
-            // Atualiza o objeto pet com o caminho relativo da imagem 
-            novoPet.imagem = '/images/' + imagemNome;
+            writer.on('finish', () => {
+                // Atualiza o objeto pet com o caminho relativo da imagem 
+                novoPet.imagem = '/images/' + imagemNome;
 
-            inserir(novoPet, res);
+                inserir(novoPet, res);
 
-            console.log(`Imagem salva com sucesso: ${imagemNome}`);
-            contarImagens();
-        });
+                console.log(`Imagem salva com sucesso: ${imagemNome}`);
+                contarImagens();
+            });
 
-        writer.on('error', (err) => {
-            console.error(err);
-            res.status(500).json({ mensagem: 'Erro ao salvar a imagem', erro: err.message });
-        });
+            writer.on('error', (err) => {
+                console.error(err);
+                res.status(500).json({ mensagem: 'Erro ao salvar a imagem', erro: err.message });
+            });
 
-        response.data.pipe(writer);
+            // Pipe o stream de leitura (imagem) para o stream de escrita (arquivo)
+            response.body.pipe(writer);
+        } else {
+            res.status(response.status).json({ mensagem: 'Erro ao baixar a imagem' });
+        }
     } catch (err) {
         console.error(err);
         res.status(500).json({ mensagem: 'Erro ao salvar a imagem' });
