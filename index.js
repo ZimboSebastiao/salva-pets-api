@@ -110,7 +110,7 @@ const contarImagens = async () => {
 
 // Função para fazer upload de imagem para o GitHub (exemplo)
 async function uploadImageToGitHub(imagemNome, caminhoDaImagem) {
-    const token = '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';
+    const token = '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';
     const owner = 'ZimboSebastiao';
     const repo = 'salva-pets-api'; // Nome do repositório, não a URL completa
     const uploadPath = `public/images/${imagemNome}`; // Caminho do arquivo no repositório
