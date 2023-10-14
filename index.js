@@ -83,7 +83,9 @@ app.post('/pets', async (req, res) => {
             });
 
             // Pipe o stream de leitura (imagem) para o stream de escrita (arquivo)
-            response.body.pipe(writer);
+            const buffer = await response.buffer();
+            writer.write(buffer);
+            writer.end();
         } else {
             res.status(response.status).json({ mensagem: 'Erro ao baixar a imagem' });
         }
@@ -122,18 +124,24 @@ async function uploadImageToGitHub(imagemNome, caminhoDaImagem) {
     const token = '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';
     const owner = 'ZimboSebastiao';
     const repo = 'https://github.com/ZimboSebastiao/salva-pets-api';
-    const uploadUrl = `https://api.github.com/repos/${owner}/${repo}/releases/assets`;
-
-    const form = new FormData();
-    form.append('file', fs.createReadStream(caminhoDaImagem));
-
+    const uploadUrl = `https://api.github.com/repos/${owner}/${repo}/contents/public/images/${imagemNome}`;
+    
     try {
+        const buffer = await fs.readFile(caminhoDaImagem);
+        const base64Image = buffer.toString('base64');
+        
+        const data = {
+            message: `Upload de ${imagemNome}`,
+            content: base64Image,
+        };
+
         const response = await fetch(uploadUrl, {
-            method: 'POST',
+            method: 'PUT',
             headers: {
                 Authorization: `token ${token}`,
+                'Content-Type': 'application/json',
             },
-            body: form,
+            body: JSON.stringify(data),
         });
 
         if (!response.ok) {
