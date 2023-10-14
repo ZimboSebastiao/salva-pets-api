@@ -112,8 +112,10 @@ const contarImagens = async () => {
 async function uploadImageToGitHub(imagemNome, caminhoDaImagem) {
     const token = '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';
     const owner = 'ZimboSebastiao';
-    const repo = 'salva-pets-api'; // Substitua com o nome do seu repositório no GitHub
-    const uploadUrl = `https://api.github.com/repos/${owner}/${repo}/contents/public/images/${imagemNome}`;
+    const repo = 'salva-pets-api'; // Nome do repositório, não a URL completa
+    const uploadPath = `public/images/${imagemNome}`; // Caminho do arquivo no repositório
+
+    const uploadUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${uploadPath}`;
 
     try {
         const buffer = await fs.readFile(caminhoDaImagem);
@@ -133,8 +135,11 @@ async function uploadImageToGitHub(imagemNome, caminhoDaImagem) {
             body: JSON.stringify(data),
         });
 
-        if (!response.ok) {
-            console.error('Erro ao fazer upload da imagem para o GitHub');
+        if (response.ok) {
+            console.log(`Upload da imagem para o GitHub com sucesso: ${imagemNome}`);
+        } else {
+            const errorResponse = await response.json();
+            console.error('Erro ao fazer upload da imagem para o GitHub:', errorResponse);
         }
     } catch (error) {
         console.error('Erro ao fazer upload da imagem para o GitHub:', error);
