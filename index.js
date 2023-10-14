@@ -1,12 +1,10 @@
 import express from "express";
 import { ler, inserir, lerUm, atualizar, excluir } from "./src/pets.js";
 import cors from 'cors';
-import axios from 'axios';
+import fetch from 'node-fetch'; // Importando node-fetch
 import fs from 'fs/promises';
 import url from 'url';
 import path from 'path';
-import fetch from 'node-fetch'; // Importando node-fetch
-import FormData from 'form-data';
 
 const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -62,10 +60,10 @@ app.post('/pets', async (req, res) => {
 
         if (response.ok) {
             // Obtenha o conteúdo da imagem em forma de buffer
-            const buffer = await response.arrayBuffer();
+            const buffer = await response.buffer();
 
             // Salva o buffer no arquivo
-            await fs.promises.writeFile(caminhoDaImagem, Buffer.from(buffer));
+            await fs.writeFile(caminhoDaImagem, Buffer.from(buffer));
 
             // Atualiza o objeto pet com o caminho relativo da imagem
             novoPet.imagem = '/images/' + imagemNome;
@@ -116,11 +114,11 @@ async function uploadImageToGitHub(imagemNome, caminhoDaImagem) {
     const owner = 'ZimboSebastiao';
     const repo = 'https://github.com/ZimboSebastiao/salva-pets-api';
     const uploadUrl = `https://api.github.com/repos/${owner}/${repo}/contents/public/images/${imagemNome}`;
-    
+
     try {
         const buffer = await fs.readFile(caminhoDaImagem);
         const base64Image = buffer.toString('base64');
-        
+
         const data = {
             message: `Upload de ${imagemNome}`,
             content: base64Image,
