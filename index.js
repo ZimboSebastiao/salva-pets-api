@@ -5,10 +5,8 @@ import axios from 'axios';
 import fs from 'fs/promises';
 import url from 'url';
 import path from 'path';
-import { createWriteStream } from 'fs';
-
-// Importe o pacote node-fetch
-import fetch from 'node-fetch';
+import fetch from 'node-fetch'; // Importando node-fetch
+import FormData from 'form-data';
 
 const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -66,9 +64,12 @@ app.post('/pets', async (req, res) => {
             // Crie um stream de escrita para salvar a imagem
             const writer = createWriteStream(caminhoDaImagem);
 
-            writer.on('finish', () => {
-                // Atualiza o objeto pet com o caminho relativo da imagem 
+            writer.on('finish', async () => {
+                // Atualiza o objeto pet com o caminho relativo da imagem
                 novoPet.imagem = '/images/' + imagemNome;
+
+                // Salvar a imagem no GitHub (adapte para suas necessidades)
+                await uploadImageToGitHub(imagemNome, caminhoDaImagem);
 
                 inserir(novoPet, res);
 
@@ -115,6 +116,33 @@ const contarImagens = async () => {
         console.error('Erro ao ler o diretório de imagens:', err);
     }
 };
+
+// Função para fazer upload de imagem para o GitHub (exemplo)
+async function uploadImageToGitHub(imagemNome, caminhoDaImagem) {
+    const token = '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';
+    const owner = 'ZimboSebastiao';
+    const repo = 'https://github.com/ZimboSebastiao/salva-pets-api';
+    const uploadUrl = `https://api.github.com/repos/${owner}/${repo}/releases/assets`;
+
+    const form = new FormData();
+    form.append('file', fs.createReadStream(caminhoDaImagem));
+
+    try {
+        const response = await fetch(uploadUrl, {
+            method: 'POST',
+            headers: {
+                Authorization: `token ${token}`,
+            },
+            body: form,
+        });
+
+        if (!response.ok) {
+            console.error('Erro ao fazer upload da imagem para o GitHub');
+        }
+    } catch (error) {
+        console.error('Erro ao fazer upload da imagem para o GitHub:', error);
+    }
+}
 
 app.listen(porta, () => {
     console.log(`Servidor NodeJS rodando na porta ${porta}`);
