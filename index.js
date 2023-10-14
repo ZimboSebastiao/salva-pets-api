@@ -129,7 +129,7 @@ async function uploadImageToGitHub(imagemNome, caminhoDaImagem) {
         const response = await fetch(uploadUrl, {
             method: 'PUT',
             headers: {
-                Authorization: `token ${token}`,
+                Authorization: `Bearer ${token}`,
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(data),
