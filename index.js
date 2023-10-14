@@ -112,7 +112,7 @@ const contarImagens = async () => {
 async function uploadImageToGitHub(imagemNome, caminhoDaImagem) {
     const token = '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';
     const owner = 'ZimboSebastiao';
-    const repo = 'https://github.com/ZimboSebastiao/salva-pets-api';
+    const repo = 'salva-pets-api'; // Substitua com o nome do seu repositório no GitHub
     const uploadUrl = `https://api.github.com/repos/${owner}/${repo}/contents/public/images/${imagemNome}`;
 
     try {
