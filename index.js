@@ -62,10 +62,10 @@ app.post('/pets', async (req, res) => {
 
         if (response.ok) {
             // Obtenha o conteúdo da imagem em forma de buffer
-            const buffer = await response.buffer();
+            const buffer = await response.arrayBuffer();
 
             // Salva o buffer no arquivo
-            await fs.promises.writeFile(caminhoDaImagem, buffer);
+            await fs.promises.writeFile(caminhoDaImagem, Buffer.from(buffer));
 
             // Atualiza o objeto pet com o caminho relativo da imagem
             novoPet.imagem = '/images/' + imagemNome;
