@@ -62,7 +62,7 @@ app.post('/pets', async (req, res) => {
 
         if (response.ok) {
             // Crie um stream de escrita para salvar a imagem
-            const writer = createWriteStream(caminhoDaImagem);
+            const writer = fs.createWriteStream(caminhoDaImagem);
 
             writer.on('finish', async () => {
                 // Atualiza o objeto pet com o caminho relativo da imagem
