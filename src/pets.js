@@ -20,19 +20,19 @@ function ler(res) {
 }
 
 // Inserindo pets no banco de dados
-function inserir(pet, res){
+function inserir(pet, res) {
     const sql = "INSERT INTO pets SET ?";
     conexao.query(sql, pet, (erro) => {
-
         if (erro) {
-            res.status(400).json(erro.code);
-
+            // Em caso de erro, envie uma resposta de erro
+            res.status(400).json({ mensagem: "Erro ao inserir pet no banco de dados", erro: erro.message });
         } else {
-            res.status(201).json({"status" : "Pet Adicionado com sucesso."});
+            // Em caso de sucesso, envie uma resposta de sucesso
+            res.status(201).json({ mensagem: "Pet Adicionado com sucesso." });
         }
     });
-    
 }
+
 
 
 
