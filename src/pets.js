@@ -5,16 +5,14 @@ function ler(res) {
     const sql = "SELECT * FROM pets ORDER BY nome";
 
     conexao.query(sql, (erro, resultados) => {
-        // Verificação para ver se há conteúdo
-        if (resultados.length === 0) {
-            res.status(204).end(); //  .end() encerra a execução
-            return;
-        }
-
         if (erro) {
-            res.status(400).json(erro.code); 
+            res.status(400).json(erro.code);
         } else {
-            res.status(200).json(resultados);
+            if (resultados && resultados.length > 0) {
+                res.status(200).json(resultados);
+            } else {
+                res.status(204).end();
+            }
         }
     });
 }
