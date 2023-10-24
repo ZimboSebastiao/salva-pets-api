@@ -33,13 +33,6 @@ function inserir(pet, res) {
 
 
 
-
-
-
-
-
-
-
 // Ler um pet
 function lerUm(id, res) {
     const sql = "SELECT * FROM pets  WHERE id = ?";
@@ -86,4 +79,38 @@ function excluir(id, res) {
     });
 }
 
-export {ler, inserir, lerUm, atualizar, excluir};
+// Ler/exibir todos os gatos
+function gatos(res) {
+    const sql = 'SELECT * FROM pets WHERE tipo = "Gato" ORDER BY nome';
+
+    conexao.query(sql, (erro, resultados) => {
+        if (erro) {
+            res.status(400).json(erro.code);
+        } else {
+            if (resultados && resultados.length > 0) {
+                res.status(200).json(resultados);
+            } else {
+                res.status(204).end();
+            }
+        }
+    });
+}
+
+// Ler/exibir todos os gatos
+function cachorros(res) {
+    const sql = 'SELECT * FROM pets WHERE tipo = "Cachorro" ORDER BY nome';
+
+    conexao.query(sql, (erro, resultados) => {
+        if (erro) {
+            res.status(400).json(erro.code);
+        } else {
+            if (resultados && resultados.length > 0) {
+                res.status(200).json(resultados);
+            } else {
+                res.status(204).end();
+            }
+        }
+    });
+}
+
+export {ler, inserir, lerUm, atualizar, excluir, gatos, cachorros};

@@ -1,5 +1,5 @@
 import express from 'express';
-import { ler, inserir, lerUm, atualizar, excluir } from './src/pets.js';
+import { ler, inserir, lerUm, atualizar, excluir, gatos, cachorros } from './src/pets.js';
 import cors from 'cors';
 import axios from 'axios';
 import fs from 'fs';
@@ -65,6 +65,16 @@ app.patch('/pets/:id', (req, res) => {
 app.delete('/pets/:id', (req, res) => {
     const id = parseInt(req.params.id);
     excluir(id, res);
+});
+
+app.get('/gatos', (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+    gatos(res);
+});
+
+app.get('/cachorros', (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+    cachorros(res);
 });
 
 app.listen(porta, () => {
