@@ -114,4 +114,38 @@ function cachorros(res) {
 }
 
 
-export {ler, inserir, lerUm, atualizar, excluir, gatos, cachorros};
+// Função para filtrar por cidade
+function cidade(res, cidade) {
+    const sql = 'SELECT * FROM pets WHERE cidade = ? ORDER BY nome';
+
+    conexao.query(sql, [cidade], (erro, resultados) => {
+        if (erro) {
+            res.status(400).json(erro.code);
+        } else {
+            if (resultados && resultados.length > 0) {
+                res.status(200).json(resultados);
+            } else {
+                res.status(204).end();
+            }
+        }
+    });
+}
+
+// Função para filtrar por regiao
+function regiao(res, regiao) {
+    const sql = 'SELECT * FROM pets WHERE regiao = ? ORDER BY nome';
+
+    conexao.query(sql, [regiao], (erro, resultados) => {
+        if (erro) {
+            res.status(400).json(erro.code);
+        } else {
+            if (resultados && resultados.length > 0) {
+                res.status(200).json(resultados);
+            } else {
+                res.status(204).end();
+            }
+        }
+    });
+}
+
+export {ler, inserir, lerUm, atualizar, excluir, gatos, cachorros, cidade, regiao};

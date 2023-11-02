@@ -1,5 +1,5 @@
 import express from 'express';
-import { ler, inserir, lerUm, atualizar, excluir, gatos, cachorros } from './src/pets.js';
+import { ler, inserir, lerUm, atualizar, excluir, gatos, cachorros, cidade, regiao } from './src/pets.js';
 import cors from 'cors';
 import axios from 'axios';
 import fs from 'fs';
@@ -77,7 +77,17 @@ app.get('/cachorros', (req, res) => {
     cachorros(res);
 });
 
+app.get('/cidade/:cidade', (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+    const cidadeParam = req.params.cidade; 
+    cidade(res, cidadeParam); 
+});
 
+app.get('/regiao/:regiao', (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+    const regiaoParam = req.params.regiao; 
+    regiao(res, regiaoParam); 
+});
 
 app.listen(porta, () => {
     console.log(`Servidor NodeJS rodando na porta ${porta}`);
