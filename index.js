@@ -77,6 +77,8 @@ app.get('/cachorros', (req, res) => {
     cachorros(res);
 });
 
+
+
 app.listen(porta, () => {
     console.log(`Servidor NodeJS rodando na porta ${porta}`);
 });

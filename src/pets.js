@@ -96,7 +96,7 @@ function gatos(res) {
     });
 }
 
-// Ler/exibir todos os gatos
+// Ler/exibir todos os cachorros
 function cachorros(res) {
     const sql = 'SELECT * FROM pets WHERE tipo = "Cachorro" ORDER BY nome';
 
@@ -112,5 +112,6 @@ function cachorros(res) {
         }
     });
 }
+
 
 export {ler, inserir, lerUm, atualizar, excluir, gatos, cachorros};
