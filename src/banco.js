@@ -13,7 +13,7 @@ import mysql2 from "mysql2";
 const conexao = mysql2.createConnection({
     host : 'localhost',
     user : 'id21519293_salvapets',
-    password : 'Salvapets123@',
+    password : '@7TgO\FWuln{wF~h',
     database : 'id21519293_petsapi'
 })
 
