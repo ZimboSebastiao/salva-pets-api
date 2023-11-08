@@ -23,7 +23,7 @@ const conexao = mysql2.createConnection({
 //conexao.connect();
 conexao.connect(erro => {
     if(erro){
-        console.error(`Erro ao conectar: ${erro.message}`);
+        console.error(`Erro ao conectar no banco: ${erro.message}`);
     } else {
         console.log(`Banco de dados conectado em: ${conexao.config.host}`);
     }
