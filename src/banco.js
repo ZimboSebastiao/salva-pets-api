@@ -11,10 +11,10 @@ import mysql2 from "mysql2";
 
 // Banco de dados DB4Free
 const conexao = mysql2.createConnection({
-    host : '127.0.0.1',
-    user : 'id21519293_salvapets',
-    password : '@7TgO\FWuln{wF~h',
-    database : 'id21519293_petsapi'
+    host : 'db4free.net',
+    user : 'salvapets',
+    password : 'Salvapets123@',
+    database : 'petsapi'
 })
 
 
